@@ -1,18 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Helpers;
-using Telegram.Bot.Requests;
-using Telegram.Bot.Types.InlineQueryResults;
 using Telegram.Bot.Types.InputFiles;
-using Telegram.Bot.Exceptions;
-using System.IO;
 
 namespace H_W_9._4_ConsoleApp
 {
@@ -23,7 +18,7 @@ namespace H_W_9._4_ConsoleApp
 
         public static async Task Main(string[] args)
         {
-            string token = System.IO.File.ReadAllText(@"C:\Users\Rishat Murzyev\Desktop\Token\token.txt");
+            string token = System.IO.File.ReadAllText(@"");
 
             Bot = new TelegramBotClient(token);
 
@@ -116,7 +111,7 @@ namespace H_W_9._4_ConsoleApp
 
                 if (update.Message.Text == "/getFile")
                 {
-                    var directory = new DirectoryInfo("C://Users/Rishat Murzyev/source/repos/H_W_9.4_ConsoleApp/bin/Debug");
+                    var directory = new DirectoryInfo("");
 
                     FileInfo[] files = directory.GetFiles();
 
@@ -127,7 +122,7 @@ namespace H_W_9._4_ConsoleApp
                         InputOnlineFile iof = new InputOnlineFile(str);
 
                         iof.FileName = file.Name;
-                        
+
                         await Bot.SendDocumentAsync(update.Message.Chat.Id, iof, file.Name);
 
                         Thread.Sleep(300);
@@ -155,5 +150,5 @@ namespace H_W_9._4_ConsoleApp
             fs.Dispose();
         }
     }
-    
+
 }
